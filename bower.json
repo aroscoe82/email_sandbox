@@ -1,0 +1,22 @@
+{
+  "name": "corpu_emails",
+  "description": "email templates",
+  "main": "index.js",
+  "authors": [
+    "CorpU (Amanda Roscoe - aroscoe@corpu.com)"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation-emails": "^2.2.1"
+  }
+}
