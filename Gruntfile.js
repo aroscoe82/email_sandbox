@@ -6,6 +6,8 @@ module.exports = function(grunt) {
       sassDir: 'sass',
       emailTemplateDir: 'email_templates',
       emailDir: 'emails',
+      dataDir: 'data',
+      renderedDir: 'rendered',
     },
 
     sass: {
@@ -32,9 +34,19 @@ module.exports = function(grunt) {
             options: {
             },
             files: {
-                'emails/testing.html': 'email_templates/testing.html'
+                '<%= project.emailDir %>/testing.html': '<%= project.emailTemplateDir %>/testing.html'
             }
         }
+    },
+
+    mustache_render: {
+      main: {
+        files : [{
+            data: '<%= project.dataDir %>/testing.json',
+            template: '<%= project.emailDir %>/testing.html',
+            dest: '<%= project.renderedDir %>/testing_render.html' 
+          }]
+      },
     },
 
     watch: {
@@ -53,6 +65,11 @@ module.exports = function(grunt) {
       inlinecss: {
         files: '<%= project.emailTemplateDir %>/*.html',
         tasks: ['inlinecss:main']
+      },
+
+      mustache: {
+        files: '<%= project.emailDir %>/*.html',
+        tasks: ['mustache_render:main']
       }
     }
   });
@@ -62,6 +79,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-inline-css');
+  grunt.loadNpmTasks('grunt-mustache-render');
 
   grunt.registerTask('default', ['watch']);
 };
