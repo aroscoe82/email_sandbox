@@ -9,9 +9,10 @@
   "author": "CorpU (Amanda Roscoe - aroscoe@corpu.com)",
   "license": "ISC",
   "dependencies": {
-    "grunt": "^1.0.1",
+    "grunt": "~0.4.0",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-sass": "^1.0.0",
-    "grunt-contrib-watch": "^1.0.0"
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-inline-css": "^0.1.5"
   }
 }

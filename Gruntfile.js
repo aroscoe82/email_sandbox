@@ -3,7 +3,9 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     project: {
       cssDir: 'css',
-      sassDir: 'sass'
+      sassDir: 'sass',
+      emailTemplateDir: 'email_templates',
+      emailDir: 'emails',
     },
 
     sass: {
@@ -25,6 +27,16 @@ module.exports = function(grunt) {
       }
     },
 
+    inlinecss: {
+        main: {
+            options: {
+            },
+            files: {
+                'emails/testing.html': 'email_templates/testing.html'
+            }
+        }
+    },
+
     watch: {
       grunt: {
         options: {
@@ -36,6 +48,11 @@ module.exports = function(grunt) {
       sass: {
         files: '<%= project.sassDir %>/*.scss',
         tasks: ['sass:dist']
+      },
+
+      inlinecss: {
+        files: '<%= project.emailTemplateDir %>/*.html',
+        tasks: ['inlinecss:main']
       }
     }
   });
@@ -44,6 +61,7 @@ module.exports = function(grunt) {
   // grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-inline-css');
 
   grunt.registerTask('default', ['watch']);
 };
