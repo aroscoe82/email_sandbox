@@ -34,7 +34,8 @@ module.exports = function(grunt) {
             options: {
             },
             files: {
-                '<%= project.emailDir %>/testing.html': '<%= project.emailTemplateDir %>/testing.html'
+                '<%= project.emailDir %>/testing.html': '<%= project.emailTemplateDir %>/testing.html',
+                '<%= project.emailDir %>/boilerplate.html': '<%= project.emailTemplateDir %>/boilerplate.html'
             }
         }
     },
@@ -45,6 +46,10 @@ module.exports = function(grunt) {
             data: '<%= project.dataDir %>/testing.json',
             template: '<%= project.emailDir %>/testing.html',
             dest: '<%= project.renderedDir %>/testing_render.html' 
+          },{
+            data: '<%= project.dataDir %>/testing.json',
+            template: '<%= project.emailDir %>/boilerplate.html',
+            dest: '<%= project.renderedDir %>/boilerplate_render.html' 
           }]
       },
     },
