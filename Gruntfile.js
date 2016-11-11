@@ -40,6 +40,17 @@ module.exports = function(grunt) {
         }
     },
 
+    handlebars: {
+      options: {
+        namespace: 'corpu.emails'
+      },
+      all: {
+        files: {
+          "js/templates.js": ["partials/**/*.hbs"]
+        }
+      }
+    },
+
     mustache_render: {
       main: {
         files : [{
@@ -52,6 +63,23 @@ module.exports = function(grunt) {
             dest: '<%= project.renderedDir %>/boilerplate_render.html' 
           }]
       },
+    },
+
+    inky: {
+        base: {
+            options: {
+                // your options for Inky 
+            },
+            files: [
+                {
+                    cwd: '<%= project.emailTemplateDir %>/',
+                    src: '*.html',
+                    dest: 'inky/',
+                    filter: 'isFile',
+                    expand: true
+                }
+            ]
+        }
     },
 
     watch: {
@@ -85,6 +113,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-inline-css');
   grunt.loadNpmTasks('grunt-mustache-render');
+  grunt.loadNpmTasks('grunt-contrib-handlebars');
+  grunt.loadNpmTasks('grunt-inky');
 
   grunt.registerTask('default', ['watch']);
 };

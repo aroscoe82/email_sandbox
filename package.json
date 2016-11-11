@@ -11,8 +11,10 @@
   "dependencies": {
     "grunt": "~0.4.0",
     "grunt-cli": "^1.2.0",
+    "grunt-contrib-handlebars": "^1.0.0",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-inky": "^0.2.1",
     "grunt-inline-css": "^0.1.5",
     "grunt-mustache-render": "^1.9.2"
   }
