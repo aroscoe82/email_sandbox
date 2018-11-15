@@ -20,3 +20,8 @@
     * compiles sass
     * takes template, merges snippets then sets inline styles to sends to templates/
 * gulp render: asks for template name in location of src/template/styled, asks for data file in location of data/ and renders for preview outputting to /src/rendered
+
+------------
+## Outstanding Issues
+* span tag in html
+* date formatting
