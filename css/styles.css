@@ -1,0 +1,73 @@
+/* Mobile styles */
+@media only screen and (max-width: 480px) { table.main-table { width: 100% !important; min-width: 100%; margin: 0 auto !important; padding: 0 !important; }
+  table.wFull { width: 100% !important; min-width: 100%; margin: 0 auto !important; padding: 0 !important; }
+  table.w320 { width: 320px !important; }
+  table.w300 { width: 300px !important; }
+  table.w290 { width: 290px !important; }
+  td.w320 { width: 320px !important; }
+  td.mobile-center { text-align: center !important; }
+  td.mobile-padding { padding-left: 20px !important; padding-right: 20px !important; padding-bottom: 20px !important; }
+  td.mobile-hide { display: none !important; } }
+@media only screen { /* Thanks Outlook 2013! http://goo.gl/XLxpyl*/
+  td, h1, h2, h3 { font-family: 'Lato', 'Helvetica Neue', 'Arial', 'sans-serif' !important; }
+  td { font-size: 13px; }
+  td.text-left { text-align: left; }
+  td.text-center { text-align: center; }
+  table.main-email { width: 100%; padding: 0; margin: 0; }
+  table.wFull { /*padding: 0 10px;*/ width: 500px; }
+  .body { margin: 0; padding: 0; background: #ffffff; }
+  .tbl-interior-full { width: 100%; }
+  .text-right { text-align: right; }
+  .text-muted { color: #cccccc; }
+  span.atMention { font-weight: bold; }
+  .status-indicator { padding-right: 10px; }
+  .health-indicator { width: 16px; height: 16px; }
+  .inidicator-stat { font-size: 24px; line-height: 32px; }
+  .indicator-great { color: #7fd220; }
+  .indicator-warning { color: #f7a623; }
+  .indicator-critical { color: #cf0118; }
+  .on-track-banner-container { padding-top: 10px; padding-bottom: 10px; }
+  .cell-lg { padding: 10px; }
+  .cell-gray { background-color: #f8f8f8; border: 1px solid #e3e3e3; }
+  .font-lg { font-size: 18px; }
+  .font-sm { font-size: 11px; }
+  td.align-top { vertical-align: top; }
+  table.on-track-banner { height: 200px; }
+  .on-track-banner td, .on-track-banner h1, .on-track-banner h2, .on-track-banner h3 { color: #000000; text-align: left; }
+  .on-track-banner h1, .graphic-banner h1 { font-size: 34px; }
+  .on-track-banner h2, .graphic-banner h2 { font-size: 24px; }
+  .on-track-banner .banner-content, .graphic-banner .banner-content { vertical-align: middle; padding-right: 15px; padding-left: 15px; text-align: left; }
+  .cta { padding: 10px 10px 20px; }
+  .status-message { padding: 20px 10px; text-align: left; }
+  .falling-behind-banner-container { width: 100%; background-color: #eeeeee; padding: 0 10px; margin: 0; }
+  .falling-behind-banner td { padding: 10px; }
+  .falling-behind-banner td, .graphic-banner td, .falling-behind-banner h1, .graphic-banner h1, .falling-behind-banner h2, .graphic-banner h2, .falling-behind-banner h3, .graphic-banner h3 { color: #000000; }
+  .falling-behind-banner h1 { font-size: 34px; }
+  .falling-behind-banner h2 { font-size: 24px; }
+  .falling-behind-banner .banner-content { vertical-align: middle; padding-right: 15px; padding-left: 15px; text-align: left; }
+  .graphic-banner { width: 100%; color: #000000; background: url("https://d1pgqke3goo8l6.cloudfront.net/PvtolZVQiCZG9caG0TUA_getting_started_v5.png"); background-size: cover; background-position: center; background-repeat: no-repeat; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; }
+  td.email-content { padding: 40px 10px; }
+  td.email-content-2 { padding-top: 10px; padding-bottom: 40px; padding-left: 10px; padding-right: 10px; }
+  .call2action { background-color: #69696e; /* neutral color */ color: #ffffff; display: inline-block; padding-top: 5px; padding-bottom: 5px; padding-left: 15px; padding-right: 15px; margin-bottom: 10px; }
+  .agenda { width: 100%; padding-bottom: 0px; text-align: left; }
+  .agenda-header { border-bottom: 2px solid #000000; font-size: 24px; padding-top: 10px; padding-bottom: 5px; text-align: left; }
+  .agenda-footer { text-align: left; padding-top: 5px; padding-bottom: 10px; }
+  .agenda-lesson { padding-top: 10px; padding-bottom: 10px; font-size: 20px; font-weight: bold; }
+  .agenda-asset { padding-left: 10px; padding-bottom: 15px; }
+  .asset-verb { font-size: 16px; font-weight: bold; text-transform: uppercase; padding-bottom: 2px; }
+  td.status-indicators > p { margin-bottom: 5px; margin-top: 5px; }
+  td.email-content-discussions { padding: 0px 10px; }
+  table.discussions { padding-top: 10px; }
+  tr.initiative td { padding-bottom: 10px; }
+  table.initiative { /*border: 1px solid #e3e3e3;*/ table-layout: auto; margin-top: 15px; }
+  table.initiative > td { width: auto; width: 33.33%; }
+  table.stats, table.health { border-collapse: separate; border-spacing: 10px; }
+  table.initiative table.stats { padding-bottom: 15px; }
+  tr.initiative + tr.initiative tr:first-child { padding-top: 15px; }
+  td.cell-autowidth { width: 1%; white-space: nowrap; }
+  td.health-indicator .indicator-great, td.health-indicator .indicator-warning, td.health-indicator .indicator-critical { font-size: 22px; padding-bottom: 10px; }
+  tr.discussion + tr.discussion > td { border-top: 1px solid #dddddd; }
+  a.action-link { text-decoration: none; text-transform: uppercase; color: #ffffff; display: inline-block; padding-top: 5px; padding-bottom: 5px; padding-left: 15px; padding-right: 15px; line-height: 18px; }
+  td.email-footer { padding: 35px 10px; background-color: #d2d3d5; }
+  .footer-logo { padding-top: 15px; width: auto; height: 30px; }
+  .signature { padding: 10px 10px 20px; border-top: 1px solid #dddddd; } }

@@ -4,10 +4,14 @@ module.exports = function(grunt) {
     project: {
       cssDir: 'css',
       sassDir: 'sass',
-      emailTemplateDir: 'email_templates',
-      emailDir: 'emails',
+      templatesDir: 'raw_templates',
+      templates: '<%= project.templatesDir %>/templates',
+      snippets: '<%= project.templatesDir %>/email_snippets',
+      compiled: '<%= project.templatesDir %>/compiled_templates',
+      rendered: '<%= project.templatesDir %>/rendered_templates',
+      styled: '<%= project.templatesDir %>/styled_templates',
+      emails: 'templates/',
       dataDir: 'data',
-      renderedDir: 'rendered',
     },
 
     sass: {
@@ -29,25 +33,35 @@ module.exports = function(grunt) {
       }
     },
 
-    inlinecss: {
-        main: {
-            options: {
-            },
-            files: {
-                '<%= project.emailDir %>/testing.html': '<%= project.emailTemplateDir %>/testing.html',
-                '<%= project.emailDir %>/boilerplate.html': '<%= project.emailTemplateDir %>/boilerplate.html'
-            }
-        }
+    jinja: {
+      pre: {
+        options: {
+          templateDirs: ['<%= project.templates %>'],
+          tags: {
+            blockStart: '<%',
+            blockEnd: '%>',
+            variableStart: '<$',
+            variableEnd: '$>',
+            commentStart: '<#',
+            commentEnd: '#>'
+          }
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= project.templates %>',
+          dest: '<%= project.compiled %>',
+          src: ['*.html']
+        }]
+      }
     },
 
-    handlebars: {
-      options: {
-        namespace: 'corpu.emails'
-      },
-      all: {
-        files: {
-          "js/templates.js": ["partials/**/*.hbs"]
-        }
+    inlinecss: {
+      main: {
+        options: {},
+        expand: true,
+        cwd: '<%= project.compiled %>',
+        dest:  '<%= project.styled %>',
+        src: ['*.html']
       }
     },
 
@@ -55,31 +69,46 @@ module.exports = function(grunt) {
       main: {
         files : [{
             data: '<%= project.dataDir %>/testing.json',
-            template: '<%= project.emailDir %>/testing.html',
-            dest: '<%= project.renderedDir %>/testing_render.html' 
+            template: '<%= project.styled %>/testing.html',
+            dest: '<%= project.rendered %>/testing_render.html' 
           },{
             data: '<%= project.dataDir %>/testing.json',
-            template: '<%= project.emailDir %>/boilerplate.html',
-            dest: '<%= project.renderedDir %>/boilerplate_render.html' 
+            template: '<%= project.styled %>/boilerplate.html',
+            dest: '<%= project.rendered %>/boilerplate_render.html' 
+          },{
+            data: '<%= project.dataDir %>/newDiscussion.json',
+            template: '<%= project.styled %>/newDiscussion.html',
+            dest: '<%= project.rendered %>/newDiscussion_render.html' 
           }]
       },
     },
 
-    inky: {
-        base: {
-            options: {
-                // your options for Inky 
-            },
-            files: [
-                {
-                    cwd: '<%= project.emailTemplateDir %>/',
-                    src: '*.html',
-                    dest: 'inky/',
-                    filter: 'isFile',
-                    expand: true
-                }
-            ]
+    // inky: {
+    //     base: {
+    //         options: {
+    //             // your options for Inky 
+    //         },
+    //         files: [
+    //             {
+    //                 cwd: '<%= project.emailTemplateDir %>/',
+    //                 src: '*.html',
+    //                 dest: '<%= project.emailDir %>/',
+    //                 filter: 'isFile',
+    //                 expand: true
+    //             }
+    //         ]
+    //     }
+    // },
+
+    copy: {
+      main: {
+        files: {
+          expand: true,
+          cwd: '<%= project.styled %>',
+          src: ['*.html'],
+          dest: '<%= project.emails %>'
         }
+      }
     },
 
     watch: {
@@ -96,14 +125,14 @@ module.exports = function(grunt) {
       },
 
       inlinecss: {
-        files: '<%= project.emailTemplateDir %>/*.html',
+        files: '<%= project.compiled %>/*.html',
         tasks: ['inlinecss:main']
       },
 
-      mustache: {
-        files: '<%= project.emailDir %>/*.html',
-        tasks: ['mustache_render:main']
-      }
+      // mustache: {
+      //   files: '<%= project.emailDir %>/*.html',
+      //   tasks: ['mustache_render:main']
+      // }
     }
   });
 
@@ -113,8 +142,15 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-inline-css');
   grunt.loadNpmTasks('grunt-mustache-render');
-  grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.loadNpmTasks('grunt-inky');
+  grunt.loadNpmTasks('grunt-jinja');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.registerTask('default', ['watch']);
+
+  /* compile sass, compile partials, inline style, merge with data */
+  grunt.registerTask('build:dev', ['sass', 'jinja:pre', 'inlinecss:main', 'mustache_render']);
+
+  /* compile sass, compile partials, inline styles copy to emails directory */
+  grunt.registerTask('build:prod', ['sass', 'jinja:pre', 'inlinecss', 'copy'])
 };

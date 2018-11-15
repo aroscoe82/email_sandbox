@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>{{ recipientData.firstName }} {{ recipientData.lastName }} mentioned you in the {{ object_name }} course in CORP/U</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body class="body">
+    <% include "raw_templates/email_snippets/email_service_header.html" %>
+    <table class="main-table" align="center" border="0" align="center" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td style="padding-left: 10px; padding-right: 10px;">
+                <center>
+                    <table align="center" cellpadding="0" cellspacing="0" class="wFull" width="500px">
+                        <tr>
+                            <td style="padding-top: 20px;">
+                                <span class="font-lg">{{ parent_object_type }}</span><br/>
+                                {{ parent_object_name }}
+                                <hr>
+                            </td>
+                        </tr>
+                     </table>
+                </center><br>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding-left: 10px; padding-right: 10px;">
+                <center>
+                    <table align="center" cellpadding="0" cellspacing="0" class="wFull" width="500px">
+                        <tr>
+                            <td class="font-lg text-center" style="padding-bottom: 15px;">
+                                Hi {{ recipientData.firstName }}, {{sender.firstName}} {{sender.lastName}} {% if mentioned %}mentioned you in a discussion.{% else %}posted a new reply to a discussion you're participating in.{% endif %}
+                            </td>
+                        </tr>
+                     </table>
+                </center><br>
+            </td>
+        </tr>
+        <tr>
+          <td style="padding-left: 10px; padding-right: 10px;">
+            <center>
+              <table align="center" cellpadding="0" cellspacing="0" class="wFull" width="500px" style="border: 1px solid #dddddd;">
+                <tr>
+                  <td>
+                    <table align="center" cellpadding="0" cellspacing="10" class="tbl-interior-full" width="500px">
+                      <tr>
+                        <td width="55"><img src='https://d1pgqke3goo8l6.cloudfront.net/35wHwPP1SQKp9mlH3uMQ_discussion_icon.png' alt='discussion_icon.png' width="50" height="50" /></td>
+                        <td>
+                          {{ object_name }}<br>
+                          <span class="text-muted">{{ object_type }}</span>
+                        </td>
+                      </tr>  
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <!-- content -->
+                    <table align="center" cellpadding="0" cellspacing="10" class="tbl-interior-full" width="500px">
+                      <tr>
+                        <td class="status-message align-top" style="padding-top: 0;" width="64">
+                          <img src="{{ root_comment.createdBy.thumbnail['64'] }}" />
+                        </td>
+                        <td>
+                          <span class="font-lg">{{ root_comment.createdBy.firstName }} {{ root_comment.createdBy.lastName }}</span><br>
+                          {{ root_comment.posted }}<br/><br/>
+                          {{ root_comment.text }}
+                        </td>
+                      </tr>
+                      {% if root_comment.numberOfReplies > 1 %}
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td class="text-muted">
+                          ... {{ root_comment.numberOfReplies - 1 }} other {% if root_comment.numberOfReplies-1 != 1 %}comments{% else %}comment{% endif %} ...
+                        </td>
+                      </tr>
+                      {% endif %}
+                      {% if comment %}
+                      <tr>
+                        <td>&nbsp;</td>
+                        <td>
+                          <table align="center" cellpadding="0" cellspacing="10" class="tbl-interior-full" width="500px">
+                            <tr>
+                              <td class="align-top status-message" style="padding-top: 0;" width="64">
+                                <img src="{{ comment.createdBy.thumbnail['64'] }}" />
+                              </td>
+                              <td>
+                                <span class="font-lg">{{ comment.createdBy.firstName }} {{ comment.createdBy.lastName }}</span><br/>
+                                {{ comment.posted }}</p>
+                                <p>{{ comment.text }}</p>
+                              </td>
+                            </tr>
+                            </table>
+                        </td>
+                      </tr>
+                      {% endif %}
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </center>
+          </td>
+      </tr>
+        <tr>
+            <td>
+                <center>
+                    <table align="center" cellpadding="0" cellspacing="0" class="wFull" width="500px">
+                        <tr>
+                            <td class="status-message text-center">
+                                <a class="action-link" data-click-track-id="8073" href="{{ return_url }}">View Discussion</a></p>
+                            </td>
+                        </tr>
+                    </table>
+                </center><br>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <!-- footer -->
+            <td class="email-footer">
+              <center>
+                    <table align="center" cellpadding="0" cellspacing="0" class="wFull" width="500px">
+                        <tr><td style="padding-left: 10px; padding-right: 10px;">
+                <span style="font-weight: bold;">Why am I receiving this notification?</span><br/><br/>
+                You're receiving this notification because a reply was made in a course discussion activity in which you have participated.  When replies are made in a discussion activity post, all the participants of that discussion thread are notified when new replies are posted.
+                </td>
+                </tr>
+                </table>
+                </center>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

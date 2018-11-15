@@ -1,0 +1,65 @@
+{
+    "comment": null,
+    "companyLogoURL": "https://media-dev.corpudev.com/colinmedia/the-cave/pub/branding/27_logo.png",
+    "mentioned": true,
+    "object_name": "Testing Discussions Ping",
+    "object_type": "Ping",
+    "parent_object_name": "VLC that has",
+    "parent_object_type": "Community",
+    "primaryColor": "#000000",
+    "recipientData": {
+      "firstName": "Tim",
+      "lastName": "Awesomepants"
+    },
+    "recipient_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3NDY4NjUyZDYzNjE3NjY1M2E3MDc2NzI1NzYyIn0.uvP2EC0ylYW5yxol7MdU35gOzVJscvdotrdLkbgs1sU",
+    "return_url": "http://thecave.local/community/vlc-that-has/ping/PulseCheck/5be03effcd6b4c06c32e05aa/#/discussionPosts/top?p=5be09a1f1f62e409fd6ce688&c=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3NDY4NjUyZDYzNjE3NjY1M2E3MDc2NzI1NzYyIn0.uvP2EC0ylYW5yxol7MdU35gOzVJscvdotrdLkbgs1sU",
+    "root_comment": {
+      "_discussionGroup": {
+        "__v": 0,
+        "_id": "5be03eff6739d130bec6700a",
+        "created": "2018-11-05T13:00:47.758Z",
+        "createdBy": "7468652d636176653a73626e6373",
+        "extraData": {
+          "pingGroupId": "5b6ade807b5149713edaeacb"
+        },
+        "name": "pulseCheck_5be03effcd6b4c06c32e05aa:66656174757265323a73626e6373_2018-11-05T13:00:38.949Z",
+        "relatedObjectId": "5be03effcd6b4c06c32e05aa",
+        "relatedObjectType": "PulseCheck",
+        "serviceName": "ping"
+      },
+      "_id": "5be09a1f1f62e409fd6ce688",
+      "createdBy": {
+        "__v": 0,
+        "_id": "7468652d636176653a73626e6373",
+        "created": "2018-07-25T18:41:26.574Z",
+        "createdBy": "7468652d636176653a73626e6373",
+        "firstName": "Colin 2",
+        "lastName": "Thatcher",
+        "modified": "2018-11-05T17:52:13.639Z",
+        "modifiedBy": "7468652d636176653a73626e6373",
+        "tenant": "the-cave",
+        "thumbnail": {
+          "170": "https://media-dev.corpudev.com/colinmedia/feature2/pub/profiles/g/523a9fb777b4411d95361f5e60a4d575_62_170.png",
+          "24": "https://media-dev.corpudev.com/colinmedia/feature2/pub/profiles/g/523a9fb777b4411d95361f5e60a4d575_62_24.png",
+          "270": "https://media-dev.corpudev.com/colinmedia/feature2/pub/profiles/g/523a9fb777b4411d95361f5e60a4d575_62_270.png",
+          "40": "https://media-dev.corpudev.com/colinmedia/feature2/pub/profiles/g/523a9fb777b4411d95361f5e60a4d575_62_40.png",
+          "64": "https://media-dev.corpudev.com/colinmedia/feature2/pub/profiles/g/523a9fb777b4411d95361f5e60a4d575_62_64.png"
+        },
+        "version": 1541440332.662825
+      },
+      "id": "5be09a1f1f62e409fd6ce688",
+      "mentionedUsers": [
+        "7468652d636176653a7076725762"
+      ],
+      "numberOfReplies": 0,
+      "posted": "2018-11-05T19:29:35.902Z",
+      "tenant": "the-cave",
+      "text": "post 16 <span data-mention-id=\"7468652d636176653a7076725762\" class=\"atMention\">Tim Awesomepants</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+    "secondaryColor": "#a9af01",
+    "sender": {
+      "firstName": "Colin 2",
+      "lastName": "Thatcher"
+    },
+    "subscriptionURL": "N/A?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI3NDY4NjUyZDYzNjE3NjY1M2E3MDc2NzI1NzYyIiwic3Vic2NyaXB0aW9uRGF0YSI6eyJzdWJzY3JpcHRpb25VUkwiOiJOL0EiLCJub3RpZmljYXRpb25DYXRlZ29yeSI6Ik4vQSJ9LCJ0ZW5hbnRJZCI6InRoZS1jYXZlIiwiaWF0IjoxNTQxNDQ2MjA2fQ.0arftZyYWXd-dj93M_WpsP0tToVQTKOL-a4meJ6lv6w"
+  }

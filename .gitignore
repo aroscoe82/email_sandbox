@@ -2,3 +2,6 @@
 node_modules
 vendor
 .DS_Store
+raw_templates/compiled_templates/
+raw_templates/rendered_templates/
+raw_templates/styled_templates/
