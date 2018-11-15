@@ -45,7 +45,6 @@
   }
 }
 
-@media only screen {
  /* Thanks Outlook 2013! http://goo.gl/XLxpyl*/
  td, h1, h2, h3 {
   font-family: 'Lato', 'Helvetica Neue', 'Arial', 'sans-serif' !important;
@@ -288,7 +287,7 @@ a.action-link {
   line-height: 18px;
 }
 
-td.email-footer {
+.email-footer {
   padding: 35px 10px;
   background-color: rgb(210,211,213);
 }
@@ -300,4 +299,3 @@ td.email-footer {
 }
 
 .signature { padding: 10px 10px 20px; border-top: 1px solid #dddddd; }
-}
