@@ -160,12 +160,12 @@ module.exports = function(grunt) {
 
     copy: {
       main: {
-        files: {
+        files: [{
           expand: true,
           cwd: '<%= project.styled %>',
-          src: ['*.html'],
+          src: ['**/*.html'],
           dest: '<%= project.emails %>'
-        }
+        }]
       }
     },
 
@@ -208,5 +208,5 @@ module.exports = function(grunt) {
   grunt.registerTask('render', ['prompt', 'renderNunjucks'])
 
   /* compile sass, compile partials, inline styles copy to emails directory */
-  grunt.registerTask('build:prod', ['sass', 'jinja:pre', 'inlinecss', 'copy'])
+  grunt.registerTask('build:prod', ['sass', 'jinja:pre', 'inlinecss:main', 'copy'])
 };

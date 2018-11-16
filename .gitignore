@@ -5,3 +5,4 @@ vendor
 src/compiled/
 src/rendered/
 src/styled/
+templates/
