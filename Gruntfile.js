@@ -1,15 +1,26 @@
 module.exports = function(grunt) {
+
+  var dataFiles = grunt.file.expand({ filter: 'isFile', cwd: 'data'}, ['*.json']);
+  var dataFileChoices = dataFiles.map(function(f){
+    return { name: f, checked: false };
+  });
+
+  var templateFiles = grunt.file.expand({ filter: 'isFile', cwd: 'src/templates'}, ['**/*.html']);
+  var templateFileChoices = templateFiles.map(function(f){
+    return { name: f, checked: false };
+  });
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     project: {
       cssDir: 'css',
       sassDir: 'sass',
-      templatesDir: 'raw_templates',
-      templates: '<%= project.templatesDir %>/templates',
-      snippets: '<%= project.templatesDir %>/email_snippets',
-      compiled: '<%= project.templatesDir %>/compiled_templates',
-      rendered: '<%= project.templatesDir %>/rendered_templates',
-      styled: '<%= project.templatesDir %>/styled_templates',
+      srcDir: 'src',
+      templates: '<%= project.srcDir %>/templates',
+      snippets: '<%= project.srcDir %>/snippets',
+      compiled: '<%= project.srcDir %>/compiled',
+      rendered: '<%= project.srcDir %>/rendered',
+      styled: '<%= project.srcDir %>/styled',
       emails: 'templates/',
       dataDir: 'data',
     },
@@ -50,37 +61,84 @@ module.exports = function(grunt) {
           expand: true,
           cwd: '<%= project.templates %>',
           dest: '<%= project.compiled %>',
-          src: ['*.html']
+          src: ['**/*.html']
         }]
       }
     },
 
     inlinecss: {
       main: {
-        options: {},
+        options: {
+          applyStyleTags: true,
+          applyLinkTags: true
+        },
         expand: true,
         cwd: '<%= project.compiled %>',
         dest:  '<%= project.styled %>',
-        src: ['*.html']
+        src: ['**/*.html']
       }
     },
 
-    mustache_render: {
-      main: {
-        files : [{
-            data: '<%= project.dataDir %>/testing.json',
-            template: '<%= project.styled %>/testing.html',
-            dest: '<%= project.rendered %>/testing_render.html' 
-          },{
-            data: '<%= project.dataDir %>/testing.json',
-            template: '<%= project.styled %>/boilerplate.html',
-            dest: '<%= project.rendered %>/boilerplate_render.html' 
-          },{
-            data: '<%= project.dataDir %>/newDiscussion.json',
-            template: '<%= project.styled %>/newDiscussion.html',
-            dest: '<%= project.rendered %>/newDiscussion_render.html' 
-          }]
-      },
+    prompt: {
+      target: {
+        options: {
+          questions: [
+            {
+              config: 'templateFile',
+              type: 'list',
+              message: 'Select Template:',
+              default: 'testing.html',
+              choices: templateFileChoices,
+              validate:   function(value){
+                // console.log('templateFile: ', value);
+                if(value == ''){
+                  return 'Should not be blank';
+                }
+
+                return true;
+              }
+            },
+            {
+              config: 'dataFile',
+              type: 'list',
+              message: 'Select Data File:',
+              default: 'testing.json',
+              choices: dataFileChoices,
+              validate:   function(value){
+                // console.log('dataFile: ', value);
+                if(value == ''){
+                  return 'Should not be blank';
+                }
+
+                return true;
+              }
+            }
+          ],
+          then: function(results){
+            var temp = {
+              expand: true,
+              cwd: 'src/styled',
+              src: [results.templateFile],
+              dest: 'src/rendered'
+            }
+
+            var fl = 'data/' + results.dataFile;
+            console.log('fl: ', fl);
+
+            grunt.config.set('renderNunjucks.render.options.data', fl);
+            grunt.config.set('renderNunjucks.render.files', [temp]);
+          }
+        }
+      }
+    },
+
+    renderNunjucks: {
+      render: {
+        options: {
+          data: '<%= dataFile %>'
+        },
+        files: []
+      }
     },
 
     // inky: {
@@ -127,12 +185,7 @@ module.exports = function(grunt) {
       inlinecss: {
         files: '<%= project.compiled %>/*.html',
         tasks: ['inlinecss:main']
-      },
-
-      // mustache: {
-      //   files: '<%= project.emailDir %>/*.html',
-      //   tasks: ['mustache_render:main']
-      // }
+      }
     }
   });
 
@@ -141,15 +194,18 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-inline-css');
-  grunt.loadNpmTasks('grunt-mustache-render');
   grunt.loadNpmTasks('grunt-inky');
   grunt.loadNpmTasks('grunt-jinja');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-prompt');
+  grunt.loadNpmTasks('grunt-render-nunjucks');
 
   grunt.registerTask('default', ['watch']);
 
-  /* compile sass, compile partials, inline style, merge with data */
-  grunt.registerTask('build:dev', ['sass', 'jinja:pre', 'inlinecss:main', 'mustache_render']);
+  /* compile sass, compile partials, inline style */
+  grunt.registerTask('build:dev', ['sass', 'jinja:pre', 'inlinecss:main']);
+
+  grunt.registerTask('render', ['prompt', 'renderNunjucks'])
 
   /* compile sass, compile partials, inline styles copy to emails directory */
   grunt.registerTask('build:prod', ['sass', 'jinja:pre', 'inlinecss', 'copy'])
